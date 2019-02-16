@@ -8,5 +8,6 @@
 </ion-header>
 
 <ion-content padding>
-
+  <ion-button (click)="write()">READ</ion-button>
+  <div *ngFor="let msg of messages">{{msg}}</div>
 </ion-content>
