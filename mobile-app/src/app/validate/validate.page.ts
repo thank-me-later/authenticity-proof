@@ -17,6 +17,11 @@ export class ValidatePage implements OnInit, OnDestroy {
 
   private _nfcListener;
 
+  // use mapping because of technical limitation of nfc cards (not enough memory)
+  private _publicKeyToAddress = {
+    publickey: '0x99d60b3c64D1Af4E11e33196e9578622b2a68381'
+  };
+
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _nfcService: NfcService,
@@ -31,6 +36,7 @@ export class ValidatePage implements OnInit, OnDestroy {
         }
       );
 
+    let publicKey;
     this._nfcListener = this._nfcService.addNfcListener().subscribe(
       msg => {
         console.log('NFC:', msg);
@@ -40,11 +46,16 @@ export class ValidatePage implements OnInit, OnDestroy {
           this.success = (msg === 'signed:thankmelater!');
         } else {
           this.validating = true;
-          this._validateService.validatePublicKey()
-            .then(address => {
-              console.log(address);
+          this._validateService.validatePublicKey(this.collectionName, this._publicKeyToAddress[msg])
+            .then(result => {
+              if (result) {
+                publicKey = this._publicKeyToAddress[msg]
+                this.writeRandomMessageToTag();
+              } else {
+                this.resultExit = true;
+                this.success = false;
+              }
             });
-          this.writeRandomMessageToTag();
         }
       }
     );

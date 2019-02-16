@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import Web3 from 'web3';
+import { collectionRegistryAbi } from '../../../../contractAbi';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +11,9 @@ export class Web3Service {
     this._web3 = new Web3('https://api.infura.io/v1/jsonrpc/ropsten')
   }
 
-  getCollectionContract(address) {
-    // const myContract = new this._web3.eth.Contract(abi, address, {
-    //   from: '0x1234567890123456789012345678901234567891', // default from address
-    //   gasPrice: '20000000000' // default gas price in wei, 20 gwei in this case
-    // });
+  getCollectionContract(address, publicKey) {
+    const CollectionRegistryContract = new this._web3.eth.Contract(collectionRegistryAbi, address);
+    return CollectionRegistryContract.methods.checkItem(publicKey).call();
   }
 
   getAddressByENSName(name) {
