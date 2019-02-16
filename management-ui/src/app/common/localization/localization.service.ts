@@ -16,6 +16,10 @@ export class LocalizationService {
     this._availableLocales['en'] = localeEN;
   }
 
+  getLocale() {
+    return this._locale;
+  }
+
   setLocale(locale) {
     if (this._availableLocales[locale]) {
       this._locale = locale;
