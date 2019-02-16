@@ -1,18 +1,6 @@
 var CollectionRegistry = artifacts.require("./CollectionRegistry.sol");
 
 require('truffle-test-utils').init();
-const log = console.log;
-
-class PlayRound {
-    constructor(numberOfPips, weiRequired, winner, second, third, placingPhaseActive) {
-        this.numberOfPips = numberOfPips;
-        this.weiRequired = weiRequired;
-        this.winner = winner;
-        this.second = second;
-        this.third = third;
-        this.placingPhaseActive = placingPhaseActive;
-    }
-}
 
 contract("CollectionRegistry", accounts => {
 
