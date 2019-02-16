@@ -17,4 +17,10 @@ export class HomePage {
       this.filteredCollectionList = this.collectionList;
     }
   }
+
+  getFilterString() {
+    if (this.collectionList.length != this.filteredCollectionList.length) {
+      return `(${this.filteredCollectionList.length}/${this.collectionList.length})`;
+    }
+  }
 }

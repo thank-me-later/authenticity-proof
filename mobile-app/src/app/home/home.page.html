@@ -8,7 +8,7 @@
 
 <ion-content padding>
   <ion-searchbar #searchBar (ionChange)="onChange(searchBar.value)"></ion-searchbar>
-  <p>Available Collections</p>
+  <ion-title>Available Collections {{ getFilterString() }}</ion-title>
   <ion-list>
     <ion-item *ngFor="let collection of filteredCollectionList">
       <ion-label>{{ collection }}</ion-label>
