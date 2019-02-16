@@ -7,7 +7,17 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-button (click)="write()">READ</ion-button>
-  <div *ngFor="let msg of messages">{{msg}}</div>
+<ion-content padding *ngIf="!validating">
+  <div class="content-container">
+    <h3 no-padding no-margin>Tab your item to start validation</h3>
+    <ion-icon name="checkmark-circle-outline" *ngIf="resultExit && success" class="success"></ion-icon>
+    <ion-icon name="close-circle-outline" *ngIf="resultExit && !success" class="error"></ion-icon>
+  </div>
+</ion-content>
+
+<ion-content padding *ngIf="validating">
+  <div class="content-container">
+    <ion-spinner name="dots" color="primary"></ion-spinner>
+    <ion-text>validating</ion-text>
+  </div>
 </ion-content>

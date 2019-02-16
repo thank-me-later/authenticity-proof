@@ -11,10 +11,12 @@ export class NfcService {
 
   constructor() { }
 
-  addNfcListener(): Observable<boolean> {
+  addNfcListener(): Observable<string> {
     return new Observable(observer => {
       nfc.addNdefListener(event => {
-        observer.next(nfc.bytesToString(event.tag.ndefMessage[0].payload));
+        const msg: string = nfc.bytesToString(event.tag.ndefMessage[0].payload);
+        // remove prefix before sending
+        observer.next(msg.substr(3));
       }, (status) => {
         console.log('Initialize', status);
       }, error => {

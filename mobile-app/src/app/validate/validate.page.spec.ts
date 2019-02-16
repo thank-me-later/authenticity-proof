@@ -49,7 +49,7 @@ describe('ValidatePage', () => {
   }));
 
   it('should init the listener on init', fakeAsync(() => {
-    component.write();
+    component.writeRandomMessageToTag();
     expect(mockNfcService.writeToTag).toHaveBeenCalledWith('1234');
   }));
 });

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ValidateService } from '../validate.service';
 import { NfcService } from './nfc.service';
@@ -8,9 +8,14 @@ import { NfcService } from './nfc.service';
   templateUrl: './validate.page.html',
   styleUrls: ['./validate.page.scss'],
 })
-export class ValidatePage implements OnInit {
+export class ValidatePage implements OnInit, OnDestroy {
 
   public collectionName: string = "";
+  public validating: boolean = false;
+  public resultExit: boolean = false;
+  public success: boolean = false;
+
+  private _nfcListener;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -26,21 +31,34 @@ export class ValidatePage implements OnInit {
         }
       );
 
-    this._nfcService.addNfcListener()
-      .subscribe(
-        msg => {
-          console.log(msg);
+    this._nfcListener = this._nfcService.addNfcListener().subscribe(
+      msg => {
+        console.log('NFC:', msg);
+        if (this.validating) {
+          this.validating = false;
+          this.resultExit = true;
+          this.success = (msg === 'signed:thankmelater!');
+        } else {
+          this.validating = true;
+          // todo validate
+          this.writeRandomMessageToTag();
         }
-      );
+      }
+    );
   }
 
-  write() {
+  ngOnDestroy() {
+    console.log('NFC: Unsubscribe Listener');
+    this._nfcListener.unsubscribe();
+  }
+
+  writeRandomMessageToTag() {
     this._nfcService.writeToTag(this._validateService.generateRandom())
       .subscribe(success => {
         if (success) {
-          console.log('Message written successfully');
+          console.log('NFC: Message written successfully');
         } else {
-          console.log('Failed writing message');
+          console.log('NFC: Failed writing message');
         }
       });
   }
