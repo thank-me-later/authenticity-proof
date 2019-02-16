@@ -69,7 +69,7 @@ contract("CollectionRegistry", accounts => {
         });
     });
     describe('ADD ITEMS', function() {
-        it('should be possible to add valid item as maintainer and event is emitted', async function () {
+        it('should be possible to add valid item as maintainer and event is emitted and checkItem', async function () {
             await deployContract(collectionName, maxItems, maintainers);
             let itemEvent = await collectionRegistry.addItem(item1, itemIdentifier1, "", {from: maintainer1});
             assert.web3Event(itemEvent, {
@@ -84,6 +84,10 @@ contract("CollectionRegistry", accounts => {
                     metaData: ''
                 }
               }, 'itemAdded-event is emitted');
+            let itemExists1 = await collectionRegistry.checkItem(item1);
+            expect(itemExists1).equal(true);
+            let itemExists2 = await collectionRegistry.checkItem(item2);
+            expect(itemExists2).equal(false);
         });
         it('should NOT be possible to add an item as invalid maintainer', async function () {
             await deployContract(collectionName, maxItems, maintainers);
