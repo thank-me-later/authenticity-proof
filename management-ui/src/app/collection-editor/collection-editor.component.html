@@ -1,0 +1,21 @@
+<h2 class="mat-title">{{'collection.new' | translate}}</h2>
+<div class="editor-content" [formGroup]="collectionForm">
+  <mat-form-field class="form-item">
+    <input matInput placeholder="{{'collection.name' | translate}}" formControlName="name" required />
+  </mat-form-field>
+  <div class="form-item">
+    <div class="mat-body-1">{{'collection.type' | translate}}</div>
+    <mat-radio-group formControlName="hasLimit" class="limit-selector">
+      <mat-radio-button [value]="false">{{'collection.unlimited' | translate}}</mat-radio-button>
+      <mat-radio-button [value]="true">{{'collection.limited' | translate}}</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <mat-form-field class="form-item">
+    <input matInput [disabled]="isLimitInputDisabled()" placeholder="{{'collection.limit' | translate}}" />
+  </mat-form-field>
+</div>
+<div class="action-footer">
+  <button mat-button (click)="cancel()">{{'action.cancel' | translate}}</button>
+  <button mat-raised-button color="primary" (click)="create()"
+    [disabled]="collectionForm.invalid">{{'action.create' | translate}}</button>
+</div>

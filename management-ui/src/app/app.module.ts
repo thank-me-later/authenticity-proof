@@ -1,19 +1,14 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-
-import { AppComponent } from './app.component';
-import {MetaModule} from './meta/meta.module';
-import { CommonModule } from '@angular/common';
+import { MatButtonModule, MatCardModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule, MatToolbarModule } from '@angular/material';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  MatButtonModule,
-  MatCardModule,
-  MatFormFieldModule,
-  MatInputModule,
-  MatToolbarModule
-} from '@angular/material';
+import { AppComponent } from './app.component';
+import { CollectionEditorModule } from './collection-editor/collection-editor.module';
+import { LocalizationModule } from './common/localization/localization.module';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +25,10 @@ import {
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    MetaModule
+    MatIconModule,
+    MatDialogModule,
+    CollectionEditorModule,
+    LocalizationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
