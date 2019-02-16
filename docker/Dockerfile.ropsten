@@ -1,0 +1,11 @@
+FROM ethereum/client-go
+
+COPY ./ensutils-ropsten.js /opt/ensutils-ropsten.js
+COPY ./keystore.json /opt/keystore/keystore.json
+
+ENTRYPOINT [ "geth",\
+  "--testnet",\
+  "--syncmode", "light",\
+  "--keystore", "/opt/keystore/",\
+  "--rpc",\
+  "--rpcapi", "db,eth,net,web3,personal,admin"]
