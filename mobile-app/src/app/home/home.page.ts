@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -9,6 +10,10 @@ export class HomePage {
 
   public collectionList: Array<string> = ['Rolex Limited Editon 100', 'Rolex Black Edition'];
   public filteredCollectionList: Array<string> = this.collectionList;
+
+  constructor(
+    public navCtrl: NavController
+  ) { }
 
   onChange(search: string) {
     if (search) {
@@ -22,5 +27,9 @@ export class HomePage {
     if (this.collectionList.length != this.filteredCollectionList.length) {
       return `(${this.filteredCollectionList.length}/${this.collectionList.length})`;
     }
+  }
+
+  switchNfcPage(collection: string) {
+    this.navCtrl.navigateForward(['nfc', collection]);
   }
 }
