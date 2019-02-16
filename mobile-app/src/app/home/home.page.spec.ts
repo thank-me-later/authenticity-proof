@@ -49,6 +49,6 @@ describe('HomePage', () => {
 
   it('should navigate to nfc page', () => {
     component.switchNfcPage('test');
-    expect(navControllerMock.navigateForward).toHaveBeenCalledWith(['nfc', 'test']);
+    expect(navControllerMock.navigateForward).toHaveBeenCalledWith(['validate', 'test']);
   });
 });

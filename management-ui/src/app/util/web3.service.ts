@@ -1,15 +1,14 @@
 import {Injectable} from '@angular/core';
-import contract from 'truffle-contract';
 import {Subject} from 'rxjs';
 declare let require: any;
 const Web3 = require('web3');
-
 
 declare let window: any;
 
 @Injectable()
 export class Web3Service {
   private web3: any;
+  private ens: any;
   private accounts: string[];
   public ready = false;
 
@@ -38,17 +37,32 @@ export class Web3Service {
     setInterval(() => this.refreshAccounts(), 100);
   }
 
-  public async artifactsToContract(artifacts) {
-    if (!this.web3) {
-      const delay = new Promise(resolve => setTimeout(resolve, 100));
-      await delay;
-      return await this.artifactsToContract(artifacts);
-    }
+  deployContract(abi, bytecode, args) {
+    const contract = new this.web3.eth.Contract(abi);
+    return contract.deploy({
+      data: bytecode,
+      arguments: args
+    })
+    .send({
+      from: this.accounts[0]
+    });
+  }
 
-    const contractAbstraction = contract(artifacts);
-    contractAbstraction.setProvider(this.web3.currentProvider);
-    return contractAbstraction;
+  getContract(abi, address) {
+    const contract = new this.web3.eth.Contract(abi, address);
+    return contract;
+  }
 
+  getEnsRegistry() {
+    return this.web3.eth.registry;
+  }
+
+  getAddressByEnsName(ensName) {
+    return this.web3.eth.ens.getAddress(ensName);
+  }
+
+  registerEnsDomain(ensName, address) {
+    // TODO with ABI
   }
 
   private refreshAccounts() {

@@ -66,4 +66,13 @@ contract CollectionRegistry {
         items.push(newItem);
         emit itemAdded(_publicKey, _identifier, _metaData);
     }
+
+    function checkItem(address _publicKey) public view returns (bool) {
+        for (uint i = 0; i < items.length; i++) {
+            if (items[i].publicKey == _publicKey) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -10,8 +10,11 @@
       <mat-radio-button [value]="true">{{'collection.limited' | translate}}</mat-radio-button>
     </mat-radio-group>
   </div>
+  <mat-form-field class="form-item" *ngIf="isLimitInputDisabled()">
+    <input matInput placeholder="{{'collection.limit' | translate}}" formControlName="maxItems" />
+  </mat-form-field>
   <mat-form-field class="form-item">
-    <input matInput [disabled]="isLimitInputDisabled()" placeholder="{{'collection.limit' | translate}}" />
+    <input matInput placeholder="{{'collection.maintainer' | translate}}" formControlName="maintainer" required />
   </mat-form-field>
 </div>
 <div class="action-footer">

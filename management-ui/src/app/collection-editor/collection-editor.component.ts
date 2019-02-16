@@ -9,7 +9,6 @@ import { MatDialogRef } from '@angular/material';
 })
 export class CollectionEditorComponent implements OnInit {
 
-  public limitSelector: string;
   public collectionForm: FormGroup;
 
   constructor(
@@ -20,12 +19,14 @@ export class CollectionEditorComponent implements OnInit {
   ngOnInit() {
     this.collectionForm = this._formBuilder.group({
       'name': ['', Validators.required],
-      'hasLimit': [false]
+      'hasLimit': [false],
+      'maxItems': [0],
+      'maintainer': []
     });
   }
 
   isLimitInputDisabled() {
-    return this.limitSelector === '1';
+    return this.collectionForm.get('hasLimit').value;
   }
 
   cancel() {

@@ -8,7 +8,7 @@ import { NavController } from '@ionic/angular';
 })
 export class HomePage {
 
-  public collectionList: Array<string> = ['Rolex Limited Editon 100', 'Rolex Black Edition'];
+  public collectionList: Array<string> = ['hallowelt.test'];
   public filteredCollectionList: Array<string> = this.collectionList;
 
   constructor(
@@ -30,6 +30,6 @@ export class HomePage {
   }
 
   switchNfcPage(collection: string) {
-    this.navCtrl.navigateForward(['nfc', collection]);
+    this.navCtrl.navigateForward(['validate', collection]);
   }
 }
