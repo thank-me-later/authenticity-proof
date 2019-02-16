@@ -40,7 +40,10 @@ export class ValidatePage implements OnInit, OnDestroy {
           this.success = (msg === 'signed:thankmelater!');
         } else {
           this.validating = true;
-          // todo validate
+          this._validateService.validatePublicKey()
+            .then(address => {
+              console.log(address);
+            });
           this.writeRandomMessageToTag();
         }
       }

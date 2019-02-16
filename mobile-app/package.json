@@ -9,7 +9,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "node patch.js"
   },
   "private": true,
   "dependencies": {
@@ -35,6 +36,7 @@
     "core-js": "^2.5.4",
     "phonegap-nfc": "git+https://github.com/chariotsolutions/phonegap-nfc.git",
     "rxjs": "~6.3.3",
+    "web3": "1.0.0-beta.37",
     "zone.js": "~0.8.29"
   },
   "devDependencies": {

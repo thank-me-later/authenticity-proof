@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Web3Service } from './util/web3.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,9 @@ export class ValidateService {
 
   private readonly CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-  constructor() { }
+  constructor(
+    private _web3Service: Web3Service
+  ) { }
 
   generateRandom() {
     // todo - need to use fix value for now because of nfc device limitations
@@ -20,5 +23,10 @@ export class ValidateService {
     //   })
     //   .join('');
     return "thankmelater!"
+  }
+
+  validatePublicKey(collectionRegister) {
+    return this._web3Service.getAddressByENSName(collectionRegister)
+      .then();
   }
 }
