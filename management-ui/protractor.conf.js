@@ -11,7 +11,7 @@ exports.config = {
   capabilities: {
     'browserName': 'chrome',
     chromeOptions: {
-      args: [ "--headless", "--no-sandbox", "--disable-gpu", "--window-size=800,600" ]
+      args: ["--no-sandbox", "--disable-gpu", "--window-size=800,600"]
     }
   },
   directConnect: true,
@@ -20,7 +20,7 @@ exports.config = {
   jasmineNodeOpts: {
     showColors: true,
     defaultTimeoutInterval: 30000,
-    print: function() {}
+    print: function () { }
   },
   plugins: [{
     package: 'protractor-console-plugin'
