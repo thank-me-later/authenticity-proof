@@ -30,6 +30,6 @@ export class HomePage {
   }
 
   switchNfcPage(collection: string) {
-    this.navCtrl.navigateForward(['nfc', collection]);
+    this.navCtrl.navigateForward(['validate', collection]);
   }
 }

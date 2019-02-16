@@ -1,16 +1,16 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
-
+import { RouterModule, Routes } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+import { ValidatePage } from './validate.page';
 
-import { NfcPage } from './nfc.page';
+
 
 const routes: Routes = [
   {
     path: '',
-    component: NfcPage
+    component: ValidatePage
   }
 ];
 
@@ -21,6 +21,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [NfcPage]
+  declarations: [ValidatePage]
 })
-export class NfcPageModule {}
+export class ValidatePageModule { }

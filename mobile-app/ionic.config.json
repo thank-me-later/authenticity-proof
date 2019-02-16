@@ -1,5 +1,7 @@
 {
   "name": "authenticity-proof",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

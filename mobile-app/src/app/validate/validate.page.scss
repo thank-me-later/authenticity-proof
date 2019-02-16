@@ -1,0 +1,26 @@
+@import "../../theme/variables.scss";
+
+.content-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+ion-spinner {
+  font-size: 40px;
+}
+
+ion-icon {
+  font-size: 200px;
+
+  &.success {
+    color: var(--ion-color-success);
+  }
+
+  &.error {
+    color: var(--ion-color-danger);
+  }
+}
