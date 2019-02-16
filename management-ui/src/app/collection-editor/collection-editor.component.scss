@@ -1,0 +1,18 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-item:not(:first-child) {
+  margin-top: 10px;
+}
+
+.editor-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.limit-selector {
+  display: flex;
+  justify-content: space-between;
+}
