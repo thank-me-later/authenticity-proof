@@ -22,6 +22,15 @@ contract("CollectionDomainRegistry", accounts => {
         domainNames = await collectionDomainRegistry.collectionDomains.call();
         expect(domainNames).equal(domain);
     });
+    it('add new domain as other user fails', async function () {
+        let domain = "domain.test";
+        await deployContract();
+        try {
+            await collectionDomainRegistry.addDomain(domain, {from: accounts[0]});
+        } catch(error) {
+            assertInvalidOpCode(error);
+        }
+    });
     it('add multiple domain works', async function () {
         let domain1 = "foo.test";
         let domain2 = "bar.test"

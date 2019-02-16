@@ -43,7 +43,7 @@ contract("CollectionRegistry", accounts => {
             try {
                 await deployContract(emptyIdentifier, maxItems, maintainers);
                 assert.fail('should fail');
-            } catch(error){
+            } catch(error) {
                 assertInvalidOpCode(error);
             }
         });
@@ -51,7 +51,7 @@ contract("CollectionRegistry", accounts => {
             try {
                 await deployContract(collectionName, maxItems, emptyMaintainers);
                 assert.fail('should fail');
-            } catch(error){
+            } catch(error) {
                 assertInvalidOpCode(error);
             }
         });
@@ -82,7 +82,7 @@ contract("CollectionRegistry", accounts => {
             try {
                 await collectionRegistry.addItem(item1, itemIdentifier1, "", {from: invalidMaintainer});
                 assert.fail('should fail');
-            } catch(error){
+            } catch(error) {
                 assertInvalidOpCode(error);
             }
         });
@@ -93,14 +93,14 @@ contract("CollectionRegistry", accounts => {
             try {
                 await collectionRegistry.addItem(item1, itemIdentifier2, "", {from: maintainer1});
                 assert.fail('should fail');
-            } catch(error){
+            } catch(error) {
                 assertInvalidOpCode(error);
             }
             // 2. should fail with same identifier but different publicKey
             try {
                 await collectionRegistry.addItem(item2, itemIdentifier1, "", {from: maintainer1});
                 assert.fail('should fail');
-            } catch(error){
+            } catch(error) {
                 assertInvalidOpCode(error);
             }
         });
@@ -109,7 +109,7 @@ contract("CollectionRegistry", accounts => {
             try {
                 await collectionRegistry.addItem(item1, "", "", {from: maintainer1});
                 assert.fail('should fail');
-            } catch(error){
+            } catch(error) {
                 assertInvalidOpCode(error);
             }
         });
@@ -121,7 +121,7 @@ contract("CollectionRegistry", accounts => {
             try {
                 await collectionRegistry.addItem(item4, itemIdentifier4, "", {from: maintainer2});
                 assert.fail('should fail');
-            } catch(error){
+            } catch(error) {
                 assertInvalidOpCode(error);
             }
         });
