@@ -4,6 +4,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Observable } from 'rxjs';
 import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
+import { AppService } from './app.service';
+import { Web3Service } from './util/web3.service';
 
 
 describe('AppComponent', () => {
@@ -13,6 +15,8 @@ describe('AppComponent', () => {
     name: 'test',
     hasLimit: false
   };
+  let mockAppService: AppService;
+  let mockWeb3Service: Web3Service;
 
   beforeEach(() => {
     const mockDialogRef = {
@@ -26,7 +30,13 @@ describe('AppComponent', () => {
     mockDialog = jasmine.createSpyObj('MockMatDialog', {
       open: mockDialogRef
     });
-    component = new AppComponent(mockDialog);
+    mockAppService = jasmine.createSpyObj('MockAppService', {
+      deployContract: Promise.resolve()
+    });
+    mockWeb3Service = jasmine.createSpyObj('MockWeb3Service', {
+      deployContract: Promise.resolve()
+    });
+    component = new AppComponent(mockDialog, mockAppService, mockWeb3Service);
   });
 
   it('should create', async(() => {
