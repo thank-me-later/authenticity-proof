@@ -8,6 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { CollectionEditorModule } from './collection-editor/collection-editor.module';
 import { LocalizationModule } from './common/localization/localization.module';
+import { AppService } from './app.service';
+import { Web3Service } from './util/web3.service';
 
 
 @NgModule({
@@ -30,7 +32,10 @@ import { LocalizationModule } from './common/localization/localization.module';
     CollectionEditorModule,
     LocalizationModule
   ],
-  providers: [],
+  providers: [
+    AppService,
+    Web3Service
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
