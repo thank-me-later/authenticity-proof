@@ -47,7 +47,7 @@ export class AppComponent implements OnInit {
         tap(raw => ensname = raw.name.replace(/\s/ig, '')),
         switchMap(raw => from(this._appService.deployContract(raw.name, raw.maxItems, [raw.maintainer]))),
         // can also be done in separate steps. Would be normally a task of the registrar
-        switchMap(instance => from(this._web3Service.registerEnsDomain(ensname, instance.options.address))),
+        switchMap((instance: any) => from(this._web3Service.registerEnsDomain(ensname, instance.options.address))),
         switchMap(result => from(this._domainRegistryService.addDomain(result))),
       )
       .subscribe(result => {

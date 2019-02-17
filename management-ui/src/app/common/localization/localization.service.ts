@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { localeDE } from './locales/locale.de.js';
 import { localeEN } from './locales/locale.en.js';
 
 @Injectable({
@@ -12,7 +11,6 @@ export class LocalizationService {
   private _availableLocales = {};
 
   constructor() {
-    this._availableLocales['de'] = localeDE;
     this._availableLocales['en'] = localeEN;
   }
 

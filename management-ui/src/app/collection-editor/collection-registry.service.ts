@@ -11,8 +11,8 @@ export class CollectionRegistryService {
         private _web3service: Web3Service
     ) { }
 
-    public async deployContract(name, maxItems, maintainers) {
-        return await this._web3service.deployContract(collectionRegistryAbi, collectionRegistryBytecode, [name, maxItems, maintainers]);
+    public deployContract(name, maxItems, maintainers) {
+        return this._web3service.deployContract(collectionRegistryAbi, collectionRegistryBytecode, [name, maxItems, maintainers]);
     }
 
     public getContract(address) {
