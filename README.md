@@ -30,10 +30,7 @@
 * *the final product would be a minuscule device that combines NFC with a secure element and is able to generate keypairs and sign messages*
 
 ## Flows
-* [CollectionRegistryFlow / ProductVerificationFlow](documentation)
-
-## Slides
-* [Identity__of_Things.pdf](slides/Identity__of_Things.pdf)
+* see [flow-documentation](documentation)
 
 ## Contracts (deployed on ropsten testnet)
 
