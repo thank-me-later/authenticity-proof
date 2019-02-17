@@ -11,6 +11,7 @@
     * list existing collections by `ENS-domain`
         * ENS-lookup
     * deploy new `CollectionRegistry` instances
+    * register ENS-subdomain for the new instance
     * add items to existing collections
 * Mobile APP
     * NFC communication
