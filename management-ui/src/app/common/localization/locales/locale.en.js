@@ -9,4 +9,9 @@ export const localeEN = {
   "collection.limit": "Maximum Number of items",
   "collection.maintainer": "Maintainers",
   "collection.type": "Collection Type",
+
+  "item.new": "New Item",
+  "item.address": "Item Address",
+  "item.identifier": "Identifier",
+  "item.metadata": "Meta Information"
 };

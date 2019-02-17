@@ -36,20 +36,19 @@ export class ValidatePage implements OnInit, OnDestroy {
         }
       );
 
-    let publicKey;
     this._nfcListener = this._nfcService.addNfcListener().subscribe(
       msg => {
         console.log('NFC:', msg);
         if (this.validating) {
           this.validating = false;
           this.resultExit = true;
+          // should be replaced with public key validation but also restricted because of nfc limitations
           this.success = (msg === 'signed:thankmelater!');
         } else {
           this.validating = true;
           this._validateService.validatePublicKey(this.collectionName, this._publicKeyToAddress[msg])
             .then(result => {
               if (result) {
-                publicKey = this._publicKeyToAddress[msg]
                 this.writeRandomMessageToTag();
               } else {
                 this.resultExit = true;

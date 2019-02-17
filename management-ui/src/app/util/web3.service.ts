@@ -1,5 +1,8 @@
-import {Injectable} from '@angular/core';
-import {Subject} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
+import { ensAbi, ensAddress } from '../../../../contractAbi';
+import { environment } from '../../environments/environment';
+
 declare let require: any;
 const Web3 = require('web3');
 
@@ -8,7 +11,6 @@ declare let window: any;
 @Injectable()
 export class Web3Service {
   private web3: any;
-  private ens: any;
   private accounts: string[];
   public ready = false;
 
@@ -37,15 +39,33 @@ export class Web3Service {
     setInterval(() => this.refreshAccounts(), 100);
   }
 
+  sendTransaction(prepared) {
+    return prepared.send({
+      from: this.accounts[0]
+    });
+  }
+
+  // used from https://gist.github.com/sterlu/9e47011baedf60921b12d7c3183e25ba
+  private namehash(name) {
+    var node = '0x0000000000000000000000000000000000000000000000000000000000000000';
+    if (name !== '') {
+      var labels = name.split(".");
+      for (var i = labels.length - 1; i >= 0; i--) {
+        node = this.web3.utils.sha3(node + this.web3.utils.sha3(labels[i]).slice(2), { encoding: 'hex' });
+      }
+    }
+    return node.toString();
+  }
+
   deployContract(abi, bytecode, args) {
     const contract = new this.web3.eth.Contract(abi);
     return contract.deploy({
       data: bytecode,
       arguments: args
     })
-    .send({
-      from: this.accounts[0]
-    });
+      .send({
+        from: this.accounts[0]
+      });
   }
 
   getContract(abi, address) {
@@ -61,8 +81,23 @@ export class Web3Service {
     return this.web3.eth.ens.getAddress(ensName);
   }
 
+  getSubdomainAddress(ensname) {
+    const ens = new this.web3.eth.Contract(ensAbi, ensAddress);
+    return ens.methods.resolver(this.namehash(ensname)).call();
+  }
+
   registerEnsDomain(ensName, address) {
-    // TODO with ABI
+    const ens = new this.web3.eth.Contract(ensAbi, ensAddress);
+
+    const parentDomain = environment.topDomain;
+
+    return ens.methods
+      .setSubnodeOwner(this.namehash(parentDomain), this.web3.utils.sha3(ensName), this.accounts[0])
+      .send({ from: this.accounts[0] })
+      .then(() => ens.methods
+        .setResolver(this.namehash(ensName + '.' + parentDomain), address)
+        .send({ from: this.accounts[0] }))
+      .then(() => ensName + '.' + parentDomain);
   }
 
   private refreshAccounts() {

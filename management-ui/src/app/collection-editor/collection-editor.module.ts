@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule, MatFormFieldModule, MatInputModule, MatRadioModule } from '@angular/material';
+import { MatButtonModule, MatFormFieldModule, MatInputModule, MatRadioModule, MatSelectModule } from '@angular/material';
 import { LocalizationModule } from '../common/localization/localization.module';
 import { CollectionEditorComponent } from './collection-editor.component';
 
@@ -15,7 +15,8 @@ import { CollectionEditorComponent } from './collection-editor.component';
     MatRadioModule,
     FormsModule,
     ReactiveFormsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSelectModule
   ],
   exports: [
     CollectionEditorComponent
