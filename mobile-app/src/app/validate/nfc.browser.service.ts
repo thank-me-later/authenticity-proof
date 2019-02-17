@@ -15,7 +15,7 @@ export class NfcService {
 
   addNfcListener(): Observable<string> {
     setTimeout(() => {
-      this._nfcListenerMock.next('pub key');
+      this._nfcListenerMock.next('publickey');
     }, 2000);
     return this._nfcListenerMock;
   }
@@ -24,7 +24,7 @@ export class NfcService {
     return new Observable(observer => {
       observer.next(true);
       setTimeout(() => {
-        this._nfcListenerMock.next('presigned:' + message);
+        this._nfcListenerMock.next('signed:' + message);
       }, 2000);
       observer.complete();
     });

@@ -25,8 +25,8 @@ export class ValidateService {
     return "thankmelater!"
   }
 
-  validatePublicKey(collectionRegister) {
+  validatePublicKey(collectionRegister, publicKey) {
     return this._web3Service.getAddressByENSName(collectionRegister)
-      .then();
+      .then(address => this._web3Service.getCollectionContract(address, publicKey));
   }
 }

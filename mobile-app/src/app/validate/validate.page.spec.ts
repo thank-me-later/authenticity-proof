@@ -31,7 +31,8 @@ describe('ValidatePage', () => {
       })
     });
     mockValidateService = jasmine.createSpyObj('MockValidateService', {
-      generateRandom: '1234'
+      generateRandom: '1234',
+      validatePublicKey: Promise.resolve(true)
     })
     component = new ValidatePage(mockActivatedPage, mockNfcService, mockValidateService);
   });
@@ -48,7 +49,7 @@ describe('ValidatePage', () => {
     expect(mockNfcService.addNfcListener).toHaveBeenCalled();
   }));
 
-  it('should init the listener on init', fakeAsync(() => {
+  it('should write a random message to the tag', fakeAsync(() => {
     component.writeRandomMessageToTag();
     expect(mockNfcService.writeToTag).toHaveBeenCalledWith('1234');
   }));
