@@ -1,22 +1,34 @@
 # authenticity-proof
 
-## thank-me-later!
+## Contracts (deployed on ropsten testnet)
 
-*  Public Key
-    *  0xba2B7F4ad1B692da08BC4389faD27Db586EE03cF
-*  ENS-Domain
-    * TODO
+### CollectionDomainRegistry
+A registry that holds all ENS-domains of CollectionRegistry contracts that were verified and registered through the service provided by `thank me later!`.
 
-## ENS
-*  `ensutils-ropsten.js` is prepared to point to the ENS contract on ropsten and is copied into our docker image
-*  in the console of our container we can run `geth attach http://127.0.0.1:8545`
-*  and then load the ensutils with `loadScript("./opt/ensutils-ropsten.js")`
+* Address
+    * `0x82e37811c79a7730Bd0A145e78187B17142C6ae3`
+* ENS-domain
+    * `thankmelater.test` (only valid for 28 days)
+* Owner
+    * `0x82e37811c79a7730Bd0A145e78187B17142C6ae3`
 
-## geth
+### CollectionRegistry
+This is a contract that can be deployed by a creators or manufacturers for general collections or special limited collections.
+
+The contract is open-source and can be used be everyone.
+
+`thank me later!` verifies the identity of creators or manufacturers and registers a subdomain of `thankmelater.test` for each of their collections.
+
+* Address
+    * dynamic for each collection
+    * can be registered through `thank me later!` and obtain a unique subdomain
+
+## *deprecated (not needed in this project)*
+### docker 
+1. switch to folder `docker`
+2. run `docker build -f Dockerfile.ropsten -t geth_ropsten_ens .`
+3. run `docker run -d geth_ropsten_ens`
+
+### geth
 * https://github.com/ethereum/go-ethereum/wiki/Managing-your-accounts
 * https://ethereum.stackexchange.com/questions/28703/full-list-of-geth-terminal-commands
-
-## build and start the ropsten light-node
-1.  switch to folder `docker`
-2.  run `docker build -f Dockerfile.ropsten -t geth_ropsten_ens .`
-3.  run `docker run -d geth_ropsten_ens`
