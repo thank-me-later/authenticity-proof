@@ -17,14 +17,9 @@ describe('LocalizationService', () => {
     expect(service.getLocale()).toEqual('en');
   });
 
-  it('should set locale', () => {
-    service.setLocale('de');
-    expect(service.getLocale()).toEqual('de');
-  });
-
   it('should throw an error for invalid locale', () => {
     expect(() => {
-      service.setLocale('zh')
+      service.setLocale('de')
     })
       .toThrow();
   });

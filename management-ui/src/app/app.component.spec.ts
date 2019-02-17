@@ -17,6 +17,7 @@ describe('AppComponent', () => {
   };
   let mockAppService: CollectionRegistryService;
   let mockWeb3Service: Web3Service;
+  let mockContractInstance;
 
   beforeEach(() => {
     const mockDialogRef = {
@@ -27,6 +28,16 @@ describe('AppComponent', () => {
         })
       }
     };
+    mockContractInstance = {
+      methods: {
+        collectionDomains: () => {
+          return {
+            call: jasmine.createSpy('call()').and.returnValue(Promise.resolve('thankmelater.test'))
+          }
+        }
+      },
+      addDomain: jasmine.createSpy('addDomain()').and.returnValue(Promise.resolve('raw'))
+    };
     mockDialog = jasmine.createSpyObj('MockMatDialog', {
       open: mockDialogRef
     });
@@ -34,7 +45,9 @@ describe('AppComponent', () => {
       deployContract: Promise.resolve()
     });
     mockWeb3Service = jasmine.createSpyObj('MockWeb3Service', {
-      deployContract: Promise.resolve()
+      deployContract: Promise.resolve(),
+      getAddressByEnsName: Promise.resolve('0x123'),
+      getContract: Promise.resolve(mockContractInstance)
     });
     //component = new AppComponent(mockDialog, mockAppService, , mockWeb3Service);
   });
@@ -44,6 +57,9 @@ describe('AppComponent', () => {
       imports: [
         BrowserAnimationsModule,
         AppModule
+      ],
+      providers: [
+        { provide: Web3Service, useValue: mockWeb3Service }
       ]
     })
       .compileComponents();
