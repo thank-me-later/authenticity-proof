@@ -1,5 +1,5 @@
 # CollectionRegistryFlow
-![CollectionRegistryFlow][CollectionRegistryFlow.png]
+![CollectionRegistryFlow](CollectionRegistryFlow.png)
 
 # ProductVerificationFlow
-![ProductVerificationFlow][ProductVerificationFlow.png]
+![ProductVerificationFlow](ProductVerificationFlow.png)
