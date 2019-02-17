@@ -10,6 +10,19 @@ import { MatDialogRef } from '@angular/material';
 export class CollectionEditorComponent implements OnInit {
 
   public collectionForm: FormGroup;
+  public availableMaintainers: Array<any> = [{
+    label: 'Julian',
+    address: '0xFb43318088588a4cb9Bd172b54C0B1c0F328570B'
+  }, {
+    label: 'Nandan',
+    address: '0xDdc510846eDEa77c69830E67c4a088fA78a347be'
+  }, {
+    label: 'Marco',
+    address: '0x9b55a8896710ABdC1928cA8704A259057DD1F643'
+  }, {
+    label: 'Jan-Patrick',
+    address: '0xc3919677EF501143A39F28d9d120b1894C30cA74'
+  }];
 
   constructor(
     private _dialogRef: MatDialogRef<CollectionEditorComponent>,

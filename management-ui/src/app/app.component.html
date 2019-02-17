@@ -3,6 +3,9 @@
   <button mat-mini-fab class="action-button" (click)="launchCollectionEditor()" id="create-collection">
     <mat-icon>add</mat-icon>
   </button>
-  <button mat-button (click)="getAddressByEnsName()">Get ENS Registry</button>
-  <button mat-button (click)="registerEnsName()">Register ENS Name</button>
+  <mat-list *ngIf="domains.length > 0">
+    <mat-list-item *ngFor="let ens of domains" (click)="addItem(ens)">
+      {{ens}}
+    </mat-list-item>
+  </mat-list>
 </div>

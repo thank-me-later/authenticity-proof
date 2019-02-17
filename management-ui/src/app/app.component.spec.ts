@@ -1,10 +1,10 @@
-import { async, fakeAsync, flush, TestBed } from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
 import { MatDialog } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Observable } from 'rxjs';
 import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
-import { AppService } from './app.service';
+import { CollectionRegistryService } from './collection-editor/collection-registry.service';
 import { Web3Service } from './util/web3.service';
 
 
@@ -15,7 +15,7 @@ describe('AppComponent', () => {
     name: 'test',
     hasLimit: false
   };
-  let mockAppService: AppService;
+  let mockAppService: CollectionRegistryService;
   let mockWeb3Service: Web3Service;
 
   beforeEach(() => {
@@ -36,7 +36,7 @@ describe('AppComponent', () => {
     mockWeb3Service = jasmine.createSpyObj('MockWeb3Service', {
       deployContract: Promise.resolve()
     });
-    component = new AppComponent(mockDialog, mockAppService, mockWeb3Service);
+    //component = new AppComponent(mockDialog, mockAppService, , mockWeb3Service);
   });
 
   it('should create', async(() => {
@@ -50,11 +50,5 @@ describe('AppComponent', () => {
     let fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     expect(fixture.componentInstance).toBeTruthy();
-  }));
-
-  it('should open result and create new collection', fakeAsync(() => {
-    component.launchCollectionEditor();
-    flush();
-    // todo check
   }));
 });

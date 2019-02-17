@@ -1,0 +1,17 @@
+<h2 class="mat-title">{{'item.new' | translate}}</h2>
+<div class="editor-content" [formGroup]="itemForm">
+  <mat-form-field class="form-item">
+    <input matInput placeholder="{{'item.address' | translate}}" formControlName="address" required />
+  </mat-form-field>
+  <mat-form-field class="form-item">
+    <input matInput placeholder="{{'item.identifier' | translate}}" formControlName="identifier" required />
+  </mat-form-field>
+  <mat-form-field class="form-item">
+    <input matInput placeholder="{{'item.metadata' | translate}}" formControlName="metadata" />
+  </mat-form-field>
+</div>
+<div class="action-footer">
+  <button mat-button (click)="cancel()">{{'action.cancel' | translate}}</button>
+  <button mat-raised-button color="primary" (click)="create()"
+    [disabled]="itemForm.invalid">{{'action.create' | translate}}</button>
+</div>
