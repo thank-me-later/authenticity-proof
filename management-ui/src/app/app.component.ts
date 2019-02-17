@@ -62,7 +62,7 @@ export class AppComponent implements OnInit {
       .afterClosed()
       .pipe(
         filter(raw => !!raw),
-        switchMap(raw => from(this._appService.addItem(ensname, raw.name, raw.maxItems, [raw.maintainer]))
+        switchMap(raw => from(this._appService.addItem(ensname, raw.address, raw.identifier, raw.metadata))
         )
       )
       .subscribe(result => {

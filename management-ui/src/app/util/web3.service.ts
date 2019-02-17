@@ -81,6 +81,11 @@ export class Web3Service {
     return this.web3.eth.ens.getAddress(ensName);
   }
 
+  getSubdomainAddress(ensname) {
+    const ens = new this.web3.eth.Contract(ensAbi, ensAddress);
+    return ens.methods.resolver(this.namehash(ensname)).call();
+  }
+
   registerEnsDomain(ensName, address) {
     const ens = new this.web3.eth.Contract(ensAbi, ensAddress);
 

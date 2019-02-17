@@ -20,7 +20,7 @@ export class CollectionRegistryService {
     }
 
     public addItem(ensname, itemAddress, identifier, metaInfo) {
-        return this._web3service.getAddressByEnsName(ensname)
+        return this._web3service.getSubdomainAddress(ensname)
             .then(address => {
                 return this._web3service.getContract(collectionRegistryAbi, address)
             })
