@@ -1,5 +1,33 @@
 # authenticity-proof
 
+## Components
+* Ethereum Smart Contracts
+    * [CollectionDomainRegistry](management-ui/contracts/CollectionDomainRegistry.sol) (1 instance)
+        * here we store all ENS-domains of CollectionRegistry instances in a comma separated list
+    * [CollectionRegistry](management-ui/contracts/CollectionRegistry.sol) (∞ instances)
+        * contains an array of items that belong to this collection
+        * new (unique) items can be added until maxLimit is reached
+* Management UI
+    * list existing collections by `ENS-domain`
+        * ENS-lookup
+    * deploy new `CollectionRegistry` instances
+    * add items to existing collections
+* Mobile APP
+    * NFC communication
+    * ENS-lookup for collections
+    * verification of items
+        * check if items exist in collection
+        * generate random msg
+        * verify signed random msg
+* Arduino (prototype for NFC+SecureElement)
+    * NFC communication
+    * sign message
+
+***Disclaimer***
+
+* *due to the limitations of the arduino hardware it wasn't possible to generate an ethereum keypair and sign messages on the hardware.*
+* *the final product would be a minuscule device that combines NFC with a secure element and is able to generate keypairs and sign messages*
+
 ## Contracts (deployed on ropsten testnet)
 
 ### CollectionDomainRegistry
