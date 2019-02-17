@@ -3,7 +3,7 @@
 ## Contracts (deployed on ropsten testnet)
 
 ### CollectionDomainRegistry
-A registry that holds all ENS-domains of CollectionRegistry contracts that were verfied and registered through the service provided by `thank me later!`.
+A registry that holds all ENS-domains of CollectionRegistry contracts that were verified and registered through the service provided by `thank me later!`.
 
 * Address
     * `0x82e37811c79a7730Bd0A145e78187B17142C6ae3`
