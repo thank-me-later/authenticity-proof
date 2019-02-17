@@ -28,6 +28,9 @@
 * *due to the limitations of the arduino hardware it wasn't possible to generate an ethereum keypair and sign messages on the hardware.*
 * *the final product would be a minuscule device that combines NFC with a secure element and is able to generate keypairs and sign messages*
 
+## Flows
+* see [flow-documentation](documentation)
+
 ## Contracts (deployed on ropsten testnet)
 
 ### CollectionDomainRegistry
